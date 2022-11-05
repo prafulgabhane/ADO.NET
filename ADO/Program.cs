@@ -11,6 +11,7 @@ namespace ADO
         static void Main(string[] args)
         {
             Employee employee = new Employee();
+            EmployeModel model = new EmployeModel();
             while (true)
             {
                 Console.WriteLine("1.Ceate Database\n2.Create Table\n3.Insert Record\n4.Delete\n5.Retrive");
@@ -26,13 +27,13 @@ namespace ADO
                         break;
 
                     case 3:
-                        Console.WriteLine("First Name: ");
-                        string name=Console.ReadLine();
+                        Console.WriteLine("Name: ");
+                        model.EmpName=Console.ReadLine();
                         Console.WriteLine("Salary: ");
-                        string salary = Console.ReadLine();
+                        model.Salary = Console.ReadLine();
                         Console.WriteLine("Age: ");
-                        int age = Convert.ToInt32(Console.ReadLine());
-                        employee.InsertRecord(name, salary, age);   
+                        model.Age = Convert.ToInt32(Console.ReadLine());
+                        employee.InsertRecord(model);   
                         break;
                     case 4:
                         Console.WriteLine("First Name: ");
@@ -44,14 +45,14 @@ namespace ADO
                         break;
                     case 6:
                         Console.WriteLine("Name: ");
-                        string name2 = Console.ReadLine();
+                        model.EmpName = Console.ReadLine();
                         Console.WriteLine("Salary: ");
-                        string salary1 = Console.ReadLine();
-                        employee.UpdateSalary(name2,salary1);
+                        model.Salary = Console.ReadLine();
+                        employee.UpdateRecord(model);
                         break;
 
                     default:
-                        Console.WriteLine("Error");
+                        Console.WriteLine("Invalid Input");
                         break;
                 }
             }
