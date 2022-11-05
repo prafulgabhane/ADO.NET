@@ -185,7 +185,6 @@
   <ItemGroup>
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeModel.cs" />
-    <Compile Include="ICalculation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

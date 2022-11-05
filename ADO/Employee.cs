@@ -45,14 +45,20 @@ namespace ADO
         }
 
 
-        public void InsertRecord(string name, string salary, int age)
+        public void InsertRecord(EmployeModel emp)
         {
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("Insert into EmpData values('" + name + "','" + salary + "'," + age + ")", connection);
+             // SqlCommand cmd = new SqlCommand("InsertRecord", connection);
+                SqlCommand cmd = new SqlCommand("InsertUpdate", connection);
+
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@name", emp.EmpName);
+                cmd.Parameters.AddWithValue("@salary", emp.Salary);
+                cmd.Parameters.AddWithValue("@age", emp.Age);
                 cmd.ExecuteNonQuery();
-                Console.WriteLine("Employee Database Created Successfully");
+                Console.WriteLine("Record Insert Successfully");
                 connection.Close();
             }
             catch (Exception e)
@@ -65,9 +71,11 @@ namespace ADO
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("Delete from EmpData where Empname= ( '" + name + "' ) ", connection);
+                SqlCommand cmd = new SqlCommand("deleterecord", connection);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@name", name);
                 cmd.ExecuteNonQuery();
-                Console.WriteLine("Employee Delete Successfully");
+                Console.WriteLine("Record Delete Successfully");
                 connection.Close();
             }
             catch (Exception e)
@@ -98,12 +106,15 @@ namespace ADO
                 Console.WriteLine(e.Message);
             }
         }
-        public void UpdateSalary(string name, string salary)
+        public void UpdateRecord(EmployeModel emp)
         {
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("Update EmpData set Salary= ( '" + salary + "' ) where Empname=('"+name+"')", connection);
+                SqlCommand cmd = new SqlCommand("UpdateRecord", connection);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@name", emp.EmpName);
+                cmd.Parameters.AddWithValue("@salary", emp.Salary);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Update Successful");
                 connection.Close();
