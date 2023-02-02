@@ -29,7 +29,7 @@ namespace ADO
                     case 3:
                         Console.WriteLine("Name: ");
                         model.EmpName=Console.ReadLine();
-                        Console.WriteLine("Salary: ");
+                        Console.WriteLine("Salary: "); 
                         model.Salary = Console.ReadLine();
                         Console.WriteLine("Age: ");
                         model.Age = Convert.ToInt32(Console.ReadLine());
